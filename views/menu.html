@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Box Fight!</title>
+		<link rel = "stylesheet" type = "text/css" href="menu.css">
+		
+		<script>
+			function init()
+			{
+				var ajax = new XMLHttpRequest();
+				ajax.onreadystatechange = function()
+				{
+					if(ajax.readyState == 4 && ajax.status == 200)
+						document.getElementById("username").innerHTML = ajax.responseText;
+				}
+				ajax.open("GET", "getUserInfo.php", true);
+				ajax.send();
+			}
+		</script>
+	</head>
+
+	<body onload = "init()">
+		<div id = "menu"> 
+			<h1 id = "username"> <?php echo "stuff";?> </h1>
+			<a id = "enter-arena" href = "enterArena.php"><span id = "vert-align">Enter Arena</span></a>
+		</div>
+		
+		<canvas id = "spectate-view"> </canvas>
+	</body>
+</html>

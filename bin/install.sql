@@ -1,15 +1,15 @@
-CREATE TABLE Users
+CREATE TABLE users
 (
-	Id serial PRIMARY KEY,
-	Username varchar(255) NOT NULL,
-	Password varchar(255) NOT NULL,
-	UNIQUE (username)
+	id serial PRIMARY KEY,
+	name varchar(255) NOT NULL,
+	password varchar(255) NOT NULL,
+	UNIQUE (name)
 );
 
-CREATE TABLE Players
+CREATE TABLE players
 (
-	Id int PRIMARY KEY,
-	Xpos float NOT NULL,
-	Ypos float NOT NULL,
-	FOREIGN KEY (Id) REFERENCES users(Id)
+	id int PRIMARY KEY,
+	x float NOT NULL,
+	y float NOT NULL,
+	FOREIGN KEY (id) REFERENCES users(id)
 );

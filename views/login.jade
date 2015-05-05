@@ -1,0 +1,43 @@
+doctype html
+html
+    head
+        title Box Fight!
+        link(href='/css/index.css' rel='stylesheet' type='text/css')
+        script(src="//code.jquery.com/jquery-1.11.2.min.js")
+    body
+        h1 Box Fight!
+        button(id='login-button') Login
+        button(id='create-account-button') Create Account
+        br
+        div(id='login-form')
+            input(id='username' type='text' placeholder='Username')
+            br
+            input(id='password' type='password' placeholder='Password')
+            br
+            button(id='primary-button') Login
+            p(id='message') 
+        script(type='text/javascript').
+            $(document).ready(function() {
+                var url = '/login/submit';
+                $("#login-button").click(function() {
+                    $("#primary-button").text('Login');
+                    url = 'login/submit';
+                });
+                $("#create-account-button").click(function() {
+                    $("#primary-button").text('Create Account');
+                    url = 'login/createAccount';
+                });
+                $("#primary-button").click(function() {
+                    $.post(url, 
+                    {
+                        name: $("#username").val(), 
+                        password: $("#password").val()
+                    },
+                    function(data) {
+                        if(data.redirect) {
+                            window.location.replace(data.redirect);
+                        }
+                        $("#message").text(data)
+                    });
+                });
+            });

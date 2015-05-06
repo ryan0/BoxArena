@@ -2,5 +2,29 @@ doctype html
 html
     head
         title Box Fight!
+        link(href='/css/home.css' rel='stylesheet' type='text/css')
+        script(src="//code.jquery.com/jquery-1.11.2.min.js")
     body
-        h1 Home
+        canvas(id='view')
+        div(id='profile')
+            h1 Username
+            h2 Kills:
+            h2 Deaths:
+            h2 KDR:
+            h2 Score:
+            button(id='enter-arena') Enter Arena
+        div(id='chat')
+        script(type='text/javascript').
+            var view;
+            var ctx;
+            $(document).ready(function() {
+                $("#enter-arena").click(function() {
+                    window.location.replace('/arena');
+                });
+                view = document.getElementById('view');
+                ctx = view.getContext('2d');
+                ctx.fillStyle = 'gray';
+                ctx.fillRect(0, 0, view.width, view.height);
+                ctx.fillStyle = 'red';
+                ctx.fillRect(20, 20, 200, 50);
+            });

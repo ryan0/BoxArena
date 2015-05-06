@@ -1,0 +1,5 @@
+html, body, canvas {
+    position: absolute;
+    margin: 0;
+    left: 0;
+}

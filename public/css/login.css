@@ -37,3 +37,6 @@ button:active {
 #primary-button {
     background: rgb(20, 20, 100);
 }
+#primary-button:hover, #primary-button:focus {
+    background: rgb(30, 30, 110);
+}

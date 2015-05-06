@@ -1,0 +1,26 @@
+doctype html
+html
+    head 
+        title Box Fight!
+        link(href='/css/arena.css' rel='stylesheet' type='text/css')
+        script(src='//code.jquery.com/jquery-1.11.2.min.js')
+    body
+        canvas(id='view')
+        script(type='text/javascript').
+            var view;
+            var ctx;
+            $(document).ready(function() {
+                view = document.getElementById('view');
+                if(window.innerWidth > window.innerHeight) {
+                    view.height = window.innerHeight;
+                    view.width = window.innerHeight;
+                }
+                else {
+                    view.height = window.innerWidth;
+                    view.width = window.innerWidth;
+                }
+                view.style.left = (window.innerWidth-view.width)/2.0+'px';
+                ctx = view.getContext('2d');
+                ctx.fillStyle = 'rgb(45, 45, 100)';
+                ctx.fillRect(0, 0, view.width, view.height);
+            });

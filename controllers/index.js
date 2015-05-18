@@ -6,7 +6,12 @@ router.use(require('./home'));
 router.use(require('./arena'));
 
 router.get('/', function(req, res) {
-	res.redirect('/login');
+    if(req.session.username) {
+        res.redirect('/home');
+    }
+    else {
+	    res.redirect('/login');
+    }
 });
 
 module.exports = router;

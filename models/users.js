@@ -6,31 +6,31 @@ module.exports = {
     getUser: function(name, callback) {
         pg.connect(conString, function(err, client, done) {
             if(err) {
-                console.log('Error ' + err);
+                done();
+                return callback(err);
             }
             var sql = 'SELECT * FROM users WHERE name=$1;';
             client.query(sql, [name], function(err, result) {
-                if(err) {
-                    console.log('Error ' + err);
-                }
                 done();
-                callback(result.rows[0]);
+                if(err) {
+                    return callback(err);
+                }
+                callback(null, result.rows[0]);
             });
         });
     },
 
 
-    addUser: function(name, password) {
+    addUser: function(name, password, callback) {
         pg.connect(conString, function(err, client, done) {
             if(err) {
-                console.log('Error ' + err);
+                done();
+                return callback(err);
             }
             var sql = 'INSERT INTO users(name, password) VALUES($1, $2);'; 
             client.query(sql, [name, password], function(err) {
-                if(err) {
-                    console.log('Error ' + err);
-                }
                 done();
+                callback(err);
             });
         });
     }
